@@ -57,21 +57,12 @@ class Enemy(obiekt):
                 self.rect.y += self.speed
             else:
                 self.rect.y =0
-
-class Enemy1(obiekt):
-    def update(self):
-            if self.rect.y <500:
-                self.rect.y += self.speed
-            else:
-                self.rect.y =0
-
-class Enemy2(obiekt):
-    def update(self):
-            if self.rect.y <500:
-                self.rect.y += self.speed
-            else:
-                self.rect.y =0                
-Enemy = Enemy("zlod.png",50 ,50,0)
+                self.rect.x=randint(1,500)
+        
+E1 = Enemy("zlod.png",50 ,50,3)
+E2 = Enemy("zlod.png",50 ,50,3)
+E3 = Enemy("zlod.png",50 ,50,3)
+E4 = Enemy("zlod.png",50 ,50,3)
 
 class bullet(obiekt):
     def fire(self):
@@ -101,9 +92,12 @@ while game:
     txt = "Очки"+str(ochki)
     text = font1.render(txt,1,(255,0,0))
     scr.blit(text,(10,20))
-    if sprite.collide_rect(Enemy,b1):
-        Enemy.rect.y=-50
-        Enemy.rect.x=randint(1,500)
+    if sprite.collide_rect(E1,b1):
+        E1.rect.y=-50
+        E1.rect.x=randint(1,500)
+
+        
+        
     kick = mixer.Sound('fire.ogg')
     #scr.fill((50,50,150))
     scr.blit(background,(0,0))
@@ -116,8 +110,14 @@ while game:
     
     GEROI.reset()
     GEROI.update()
-    Enemy.reset()
-    Enemy.update()
+    E1.reset()
+    E1.update()
+    E2.reset()
+    E2.update()
+    E3.reset()
+    E3.update()
+    E4.reset()
+    E4.update()
     b1.reset()
     b1.fire()
     b2.reset()
@@ -128,6 +128,12 @@ while game:
     b4.fire()
     b5.reset()
     b5.fire()
+
+#  if mob.rect.right > player.rect.left and \
+# mob.rect.left < player.rect.right and \
+# mob.rect.bottom > player.rect.top and \
+# mob.rect.top < player.rect.bottom:
+#     collide = True
     
 
     display.update()
@@ -136,4 +142,3 @@ while game:
     display.update()
     clock.tick(FPS)
     #kick.play()
-app.exec_()
